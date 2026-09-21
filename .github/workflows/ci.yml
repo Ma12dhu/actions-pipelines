@@ -1,0 +1,19 @@
+name: CI
+on: [push,pull_request]
+jobs: 
+  CI_pipeline:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout the code
+        uses: actions/checkout@v4
+      - name: setup python
+        uses: actions/setup-python@v5
+        with: 
+         python-version: "3.12"
+         cache: pip
+      - name: install dependencies
+        run: pip install -r requirements.txt
+      - name: run tests
+        run: python3 -m pytest
+          
+
